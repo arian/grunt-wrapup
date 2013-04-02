@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
+"use strict";
 
 var wrapup = require('wrapup')
 var path = require('path')
