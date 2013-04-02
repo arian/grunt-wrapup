@@ -1,0 +1,37 @@
+{
+  "name": "grunt-wrapup",
+  "description": "Grunt Plugin for WrapUp. Wraps your node modules into web modules.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/arian/grunt-wrapup",
+  "author": {
+    "name": "Arian Stolwijk",
+    "email": "stolwijk.arian@gmail.com",
+    "url": "http://aryweb.nl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arian/grunt-wrapup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arian/grunt-wrapup/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/arian/grunt-wrapup/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "wrapup": "0.11"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
