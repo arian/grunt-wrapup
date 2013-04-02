@@ -1,6 +1,7 @@
 # grunt-wrapup
 
-> Grunt Plugin for WrapUp. Wraps your node modules into web modules.
+Grunt Plugin for [WrapUp](https://github.com/mootools/wrapup). Wraps your node
+modules into web modules.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
