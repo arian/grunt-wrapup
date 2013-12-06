@@ -51,7 +51,7 @@ module.exports = function(grunt){
 
 		amd.set('output', args.output);
 		amd.set('compress', args.compress);
-		amd.set('path', path);
+		amd.set('path', _path);
 		amd.set('sourcemap', args.sourceMap);
 		amd.set('sourcemapURL', args.sourceMapUrl);
 		amd.set('sourcemapRoot', args.sourceMapRoot);
