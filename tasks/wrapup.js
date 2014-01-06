@@ -8,28 +8,27 @@
 
 "use strict";
 
-var wrapup = require('wrapup')
-var path = require('path')
+var wrapup = require('wrapup');
+var path = require('path');
 
 module.exports = function(grunt) {
 
-    grunt.registerMultiTask('wrapup', 'Wraps node modules into web modules', function() {
+  grunt.registerMultiTask('wrapup', 'Wraps node modules into web modules', function() {
 
-        var done = this.async()
-        var wrup = wrapup(this.data.options);
+    var done = this.async();
+    var wrup = wrapup(this.data.options);
 
-        if (this.data.requires){
-            for (var name in this.data.requires){
-                var r = this.data.requires[name]
-                var file = typeof r == 'string' ? r : name
-                if (typeof r == 'string') wrup.require(name, file)
-                else wrup.require(file)
-            }
-        }
+    if (this.data.requires) {
+      for (var name in this.data.requires) {
+        var r = this.data.requires[name];
+        var file = typeof r == 'string' ? r : name;
+        if (typeof r == 'string') wrup.require(name, file);
+        else wrup.require(file);
+      }
+    }
 
-        wrup.up(done)
+    wrup.up(done);
 
-    })
+  });
 
 };
-
