@@ -24,6 +24,15 @@ module.exports = function(grunt) {
           "output": "built.js"
         }
       }
+    },
+    "wrapup-amd": {
+      build: {
+        require: {
+          "./test/main.js": true,
+          "prime": "prime"
+        },
+        output: "built.js"
+      }
     }
   });
 

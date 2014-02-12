@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     var done = this.async();
     var args = this.data;
 
-    if (!args.output && args.watch) {
+    if (!args.output && !args.watch) {
       grunt.log.error('The output option is required');
       return;
     }
