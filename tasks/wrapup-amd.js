@@ -66,7 +66,9 @@ module.exports = function(grunt) {
       var time = d.getHours() + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
       grunt.log.ok("[" + time + "] The file " + path.relative(_path, file) + " has been written");
     });
-    if (args.watch) wrup.watch(function() {});
+    if (args.watch) wrup.watch(function(err) {
+      if (err) grunt.log.error(err);
+    });
     else wrup.up(done);
   });
 
