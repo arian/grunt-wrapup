@@ -27,7 +27,10 @@ module.exports = function(grunt) {
       }
     }
 
-    wrup.up(done);
+    if (this.data.watch) wrup.watch(function(err) {
+      if (err) grunt.log.error(err);
+    });
+    else wrup.up(done);
 
   });
 
