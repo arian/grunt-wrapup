@@ -18,6 +18,10 @@ module.exports = function(grunt) {
     var done = this.async();
     var wrup = wrapup(this.data.options);
 
+    wrup.on('warn', function (err) {
+      grunt.fail.warn(err.message);
+    });
+
     if (this.data.requires) {
       for (var name in this.data.requires) {
         var r = this.data.requires[name];
