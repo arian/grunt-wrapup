@@ -23,6 +23,11 @@ module.exports = function(grunt) {
 
     var amd = new AMDOne();
     var wrup = new WrapUp();
+
+    wrup.on('warn', function (err) {
+      grunt.fail.warn(err.message);
+    });
+
     if (Array.isArray(args.require)) {
       args.require.forEach(function(file) {
         file = path.resolve(process.cwd(), file);
