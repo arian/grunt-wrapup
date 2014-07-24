@@ -1,7 +1,7 @@
 {
   "name": "grunt-wrapup",
   "description": "Grunt Plugin for WrapUp. Wraps your node modules into web modules.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/arian/grunt-wrapup",
   "author": {
     "name": "Arian Stolwijk",
