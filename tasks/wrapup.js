@@ -18,10 +18,6 @@ module.exports = function(grunt) {
     var done = this.async();
     var wrup = wrapup(this.data.options);
 
-    wrup.on('warn', function (err) {
-      grunt.fail.warn(err.message);
-    });
-
     if (this.data.requires) {
       for (var name in this.data.requires) {
         var r = this.data.requires[name];
@@ -30,6 +26,18 @@ module.exports = function(grunt) {
         else wrup.require(file);
       }
     }
+
+    wrup.on('warn', function (err) {
+      grunt.fail.warn(err.message);
+    });
+
+    wrup.scanner.on('warn', function(err) {
+      if (err.type == 'js') {
+        grunt.log.warn(err.message + ": on " + err.module + " at line " + err.line + ", column " + err.col);
+      } else {
+        grunt.log.warn(err);
+      }
+    });
 
     if (this.data.watch) wrup.watch(function(err) {
       if (err) grunt.log.error(err);

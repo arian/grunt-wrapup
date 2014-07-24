@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var WrapUp = require('wrapup/lib/wrapup');
 var AMDOne = require('wrapup/lib/output/amdOneFile');
-var forOwn = require('prime/object/forOwn');
+var forOwn = require('mout/object/forOwn');
 
 function pad(n) {
   return String(n < 10 ? ('0' + n) : n);
@@ -24,10 +24,7 @@ module.exports = function(grunt) {
     var amd = new AMDOne();
     var wrup = new WrapUp();
 
-    wrup.on('warn', function (err) {
-      grunt.fail.warn(err.message);
-    });
-
+    var scanner = wrup.scanner;
     if (Array.isArray(args.require)) {
       args.require.forEach(function(file) {
         file = path.resolve(process.cwd(), file);
@@ -60,17 +57,33 @@ module.exports = function(grunt) {
     amd.set('sourcemap', args.sourceMap);
     amd.set('sourcemapURL', args.sourceMapUrl);
     amd.set('sourcemapRoot', args.sourceMapRoot);
-    wrup.scanner.set('sourcemap', args.sourceMap);
+    scanner.set('sourcemap', args.sourceMap);
     amd.set('ast', args.ast);
+
     wrup.withOutput(amd);
+
+    wrup.on('warn', function (err) {
+      grunt.fail.warn(err.message);
+    });
+
     wrup.on('change', function(file) {
       grunt.log.writeln('=> ' + path.relative(process.cwd(), file) + " was changed");
     });
+
     amd.on('output', function(file) {
       var d = new Date();
       var time = d.getHours() + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
       grunt.log.ok("[" + time + "] The file " + path.relative(_path, file) + " has been written");
     });
+
+    scanner.on('warn', function(err) {
+      if (err.type == 'js') {
+        grunt.log.warn(err.message + ": on " + err.module + " at line " + err.line + ", column " + err.col);
+      } else {
+        grunt.log.warn(err);
+      }
+    });
+
     if (args.watch) wrup.watch(function(err) {
       if (err) grunt.log.error(err);
     });
